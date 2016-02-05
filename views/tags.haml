@@ -1,0 +1,13 @@
+%h1 Viewing source for "#{url}"
+%a{ :href => "#{url}"} #{url}
+
+.content{:name => "tag_count", :style=>"width:864px;"}
+  %select{:multiple => true}
+    - tags.each do |k, v|
+      %option{value: "#{k}"} #{k} - (#{v['count']})
+
+#hr
+.content{:name => "source_code", :style=>"width:864px;"}
+  %xmp
+    #{source}
+#hr

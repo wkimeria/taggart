@@ -1,0 +1,9 @@
+%h1 Welcome to Taggart
+.content{:style=>"width:864px;"} This application allows you to enter a url and it will fetch the source code of the web page for you and show all the tags in the document and their counts. Clicking on a specific tag will take you to the source code and highlight all instances of the specific tag
+
+%form{ :action => "", :method => "post"}
+
+  %label{:for => "name"} url:
+  %input{:type => "text", :name => "url", :size => 200, :class => "text"}
+
+  %input{:type => "submit", :value => "Send", :class => "button"}
