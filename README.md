@@ -26,6 +26,12 @@ Use `foreman start -p XXXX` on your port of choice. For example:
 
     foreman start -p 3000
 
+### Testing
+
+Using rspec
+
+    bundle exec rspec
+
 
 ### Deploying
 
