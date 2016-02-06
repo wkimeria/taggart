@@ -19,7 +19,7 @@
 .content{:name => "tagCount", :id => "tagCount", :style=>"width:864px;"}
   %select{:multiple => true}
     - tags.each do |k, v|
-      %option{value: "#{k}", onclick: "highlightItem('#{k}'); return false;"} #{k} - (#{v['count']})}
+      %option{value: "#{k}", onclick: "highlightItem('#{k}'); return false;"} #{k} - (#{v})}
 
 #hr
 

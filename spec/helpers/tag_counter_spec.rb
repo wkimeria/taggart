@@ -2,18 +2,40 @@ require "spec_helper"
 
 RSpec.describe Taggart::Helpers::TagCounter do
 
-  describe "#is_start_tag" do
+  describe "#get_tag_count" do
 
-    it "should return true if is start tag" do
-      expect (subject.is_start_tag('<html>')).should be_truthy
+    let(:html_document) {
+      <<-eos
+        <html><head><title>Hello there</title></head>
+          <body class="test">
+          this is a test of the automatic html body
+          <table>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <TR><td></td></TR>
+            <tr class="test"><td></td></tr>
+          </table>
+          <hr/>
+
+          </body>
+        </html>
+      eos
+    }
+
+    it "should get count for single tag" do
+      expect (subject.get_tag_count(html_document, 'html')).should eq(1)
     end
 
-    it "should return true if empty tag" do
-      expect (subject.is_start_tag('<hr/>')).should be_truthy
+    it "should get count for multiple tags" do
+      expect (subject.get_tag_count(html_document, 'td')).should eq(4)
     end
 
-    it "should return false if is not start tag" do
-      expect (subject.is_start_tag('</html>')).should be_falsey
+    it "should get count for multiple tags case insensitive" do
+      expect (subject.get_tag_count(html_document, 'tr')).should eq(4)
+    end
+
+    it "should get count for empty tag" do
+      expect (subject.get_tag_count(html_document, 'hr')).should eq(1)
     end
   end
 end

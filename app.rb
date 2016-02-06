@@ -20,7 +20,6 @@ post '/' do
 
   # Handle Redirection (should we allow or warn the user?)
   page = get_page(url)
-  puts page
   tags = get_tags(page)
   #page = CGI::escapeElement(page, "script")
   page = CGI::escapeHTML(page)
@@ -58,14 +57,5 @@ end
 
 #TODO write algorithm to find tags and their positions
 def get_tags(page)
-  tags = Taggart::Helpers::TagCounter.new().parse(page)
-  tags
-=begin
-  tags = {"html" => {"count" => 1, "positions" => [[1, 6], [110, 113]]},
-          "body" => {"count" => 1, "positions" => [[7, 10], [100, 112]]},
-          "hr" => {"count" => 1, "positions" => [[7, 10]]},
-          "table" => {"count" => 3, "positions" => [[7, 10], [100, 112]]}
-  }
-  tags
-=end
+  Taggart::Helpers::TagCounter.new().get_tag_counts(page)
 end
