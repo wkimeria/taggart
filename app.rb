@@ -23,7 +23,7 @@ post '/' do
   tags = get_tags(page)
   #page = CGI::escapeElement(page, "script")
   page = CGI::escapeHTML(page)
-  haml(:tags, :locals => {:url => url, :tags => tags, :source => page})
+  haml(:index, :locals => {:url => url, :tags => tags, :source => page})
 end
 
 

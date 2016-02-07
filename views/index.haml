@@ -1,9 +1,49 @@
-%h1 Welcome to Taggart
-.content{:style=>"width:864px;"} This application allows you to enter a url and it will fetch the source code of the web page for you and show all the tags in the document and their counts. Clicking on a specific tag will take you to the source code and highlight all instances of the specific tag
+%script{:type=>"text/javascript"}
+  :plain
+    $(document).ready(function(){
 
+    });
+
+
+    function highlightItem(n){
+      console.log("called highlightItem ...");
+      $('#sourceCode').removeHighlight();
+      $('#sourceCode').highlight('<' + n);
+      $('#sourceCode').highlight(n + '>');
+      $('#sourceCode').highlight(n + '/>');
+    }
+%header
+  %h1
+    Taggart!
+%br
+%paragraph
+  Welcome to Taggart. Given a web page url, Taggart will fetch the source code of the page provided and list all the valid HTML Tags in the source code, as well as their respective counts.
+%br
+%hr
 %form{ :action => "", :method => "post"}
+  %div{:id => "inputs"}
+    %label{:for => "url"} url:
+    %input{:type => "text", :name => "url", :size => 200, :class => "text"}
+    %input{:type => "submit", :value => "Send", :class => "button"}
 
-  %label{:for => "name"} url:
-  %input{:type => "text", :name => "url", :size => 200, :class => "text"}
+- if (defined? messages) && messages
+  %div{:id => "errors"}
 
-  %input{:type => "submit", :value => "Send", :class => "button"}
+- if (defined? messages) && messages
+  %div{:id => "messages"}
+
+- if (defined? tags) && tags
+  %h4 Viewing source for "#{url}"
+  %a{ :href => "#{url}"} #{url}
+  %div{:id => "results"}
+  %nav{:id => "tagCounts"}
+    %ul{:id => tags, :style => "font-size: small;"}
+      - tags.each do |k, v|
+        %li{onclick: "highlightItem('#{k}'); return false;"}#{k} - (#{v})
+  %section
+    %div{:id=> "sourceCode", :style => "font-size: small;"}
+      #{source}
+
+
+%footer
+  Copyright © William kimeria 2016
