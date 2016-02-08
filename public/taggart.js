@@ -13,8 +13,15 @@ $(document).ready(
 
 function highlightItem(n){
 
-    $('#sourceCode').removeHighlight();
-    $('#sourceCode').highlight('<' + n);
-    $('#sourceCode').highlight(n + '>');
-    $('#sourceCode').highlight(n + '/>');
+    regexp_start = new RegExp( "(<" + n + "([^>]+)>)", 'ig');
+    regexp_end = new RegExp("</" + n + ">", 'ig');
+    regexp_empty = new RegExp("<" + n + "/>", 'ig');
+
+
+    $('#sourceCode').highlightRegex();
+    $('#sourceCode').highlightRegex(regexp_start);
+    $('#sourceCode').highlightRegex(regexp_end);
+    $('#sourceCode').highlightRegex(regexp_empty);
+
+
 }
