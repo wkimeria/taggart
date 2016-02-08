@@ -19,22 +19,32 @@
 %paragraph
   Welcome to Taggart. Given a web page url, Taggart will fetch the source code of the page provided and list all the valid HTML Tags in the source code, as well as their respective counts.
 %br
-%hr
 %form{ :action => "", :method => "post"}
   %div{:id => "inputs"}
     %label{:for => "url"} url:
     %input{:type => "text", :name => "url", :size => 200, :class => "text"}
     %input{:type => "submit", :value => "Send", :class => "button"}
-
-- if (defined? messages) && messages
-  %div{:id => "errors"}
+%br
+- if (defined? error_message) && error_message
+  %div{:id => "error_message", :class=>"error"}
+    #{error_message}
 
 - if (defined? messages) && messages
   %div{:id => "messages"}
-
+%br
+- if (defined? redirect_url) && redirect_url
+  %div{:id => "redirect", :class => "info"}
+    A redirect occurred. You were redirected to #{redirect_url}
 - if (defined? tags) && tags
-  %h4 Viewing source for "#{url}"
-  %a{ :href => "#{url}"} #{url}
+  %div{:id => "urlInfo", :class => "info"}
+    Viewing source for
+    %a{ :href => "#{url}"} #{url}
+  %br
+  %div
+    %paragraph
+      Tags present in the document are shown in the left pane, and their count is in brackets (). Click on a tag to have it highlighted in the source document in the right pane
+  %br
+  %hr
   %div{:id => "results"}
   %nav{:id => "tagCounts"}
     %ul{:id => tags, :style => "font-size: small;"}
