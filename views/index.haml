@@ -2,14 +2,12 @@
   %h1
     Taggart!
 %br
-%paragraph
+%paragraph{:style => "width:864px;text-align: left;padding-right: 40px;padding-left: 40px;"}
   Welcome to Taggart. Given a web page url, Taggart will fetch the source code of the page provided and list all the valid HTML Tags in the source code, as well as their respective counts.
-%br
-%br
 %form{ :action => "", :method => "post"}
-  %div{:id => "inputs"}
+  %div{:id => "inputs", :style => "width:864px;text-align: left;padding-right: 40px;padding-left: 40px;"}
     %label{:for => "url"} url:
-    %input{:type => "text", :name => "url", :size => 200, :class => "text"}
+    %input{:type => "text", :name => "url", :size => 100, :class => "text"}
     %input{:type => "submit", :value => "Fetch", :class => "button"}
 %br
 - if (defined? error_message) && error_message
@@ -17,29 +15,28 @@
     #{error_message}
 
 - if (defined? messages) && messages
-  %div{:id => "messages"}
-%br
+  %div{:id => "messages", :style => "width:864px;text-align: left;padding-right: 40px;padding-left: 40px;"}
 - if (defined? redirect_url) && redirect_url
-  %div{:id => "redirect", :class => "info"}
+  %div{:id => "redirect", :class => "info", :style => "width:864px;text-align: left;padding-right: 40px;padding-left: 40px;"}
     A redirect occurred. You were redirected to #{redirect_url}
 - if (defined? tags) && tags
-  %div{:id => "urlInfo", :class => "info"}
+  %div{:id => "urlInfo", :class => "info", :style => "width:864px;text-align: left;padding-right: 40px;padding-left: 40px;"}
     Viewing source for
     %a{ :href => "#{url}"} #{url}
   %br
   %div
-    %paragraph
+    %paragraph{:style => "width:864px;text-align: left;padding-right: 40px;padding-left: 40px;"}
       Tags present in the document are shown in the left pane, and their count is in brackets (). Click on a tag to have it highlighted in the source document in the right pane
-  %br
   %hr
-  %div{:id => "results"}
-  %nav{:id => "tagCounts"}
-    %ul{:id => tags, :style => "font-size: small;"}
-      - tags.each do |k, v|
-        %li #{k} - (#{v})
+  %div{:id => "results", :style => "width:864px;text-align: left;padding-right: 40px;padding-left: 40px;"}
+    %nav{:id => "tagCounts"}
+      %ul{:id => tags, :style => "font-size: small;"}
+        - tags.each do |k, v|
+          %li #{k} - (#{v})
   %section
-    %div{:id=> "sourceCode", :style => "font-size: small;"}
-      #{source}
+    %div{:id=> "sourceCode", :style => "font-size: small;", :style => "width:90%;text-align: left;padding-right: 40px;padding-left: 40px;"}
+      %pre
+        #{source}
 
 
 %footer

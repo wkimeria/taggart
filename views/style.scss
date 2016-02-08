@@ -14,7 +14,7 @@ nav {
 }
 
 section {
-  width: 350px;
+  width: 80%;
   float: left;
   padding: 10px;
 }
@@ -38,18 +38,26 @@ ul {
 .info {
   color: #00529B;
   background-color: #BDE5F8;
+  padding-left: 40;
+  padding-right: 40;
 }
 .success {
   color: #4F8A10;
   background-color: #DFF2BF;
+  padding-left: 40;
+  padding-right: 40;
 }
 .warning {
   color: #9F6000;
   background-color: #FEEFB3;
+  padding-left: 40;
+  padding-right: 40;
 }
 .error {
   color: #D8000C;
   background-color: #FFBABA;
+  padding-left: 40;
+  padding-right: 40;
 }
 
 
