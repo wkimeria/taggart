@@ -168,12 +168,16 @@ module Taggart
       # * +tag+ - current html tag to search for
       #
       # * *Returns* :
-      #   - The number of times the given tag occurs in the document
+      #   - A hashmap where the key is the tag and the value is the count in the document
       def get_tag_count(document, tag)
         count = 0
-        pattern = "<#{tag}[>|\s|//]"
-        tags_found = document.scan(/#{pattern}/i)
-        count = tags_found.size if tags_found != nil?
+        start_tag_with_attrs_pattern = "(<" + tag + "([^>]+)>)"
+        start_tag_pattern = "<" + tag + ">";
+        start_tags_attr = document.scan(/#{start_tag_with_attrs_pattern}/i)
+        start_tags = document.scan(/#{start_tag_pattern}/i)
+
+        count = start_tags_attr.size if start_tags_attr != nil?
+        count = count + start_tags.size if start_tags != nil?
         count
       end
     end

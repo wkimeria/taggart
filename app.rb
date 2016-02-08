@@ -44,16 +44,15 @@ post '/' do
 
   begin
     url = get_url(params)
-
     html_doc = Taggart::Helpers::HtmlPage.new(url)
 
     if html_doc.status != 200
-      raise StandardError, "Unable to fetch requested page"
+      raise StandardError, "Unable to fetch requested page. Status returned was #{html_doc.status}"
     end
 
-    page = html_doc.source
-    tags = get_tags(page)
-    page = CGI::escapeHTML(page)
+    unescaped_page = html_doc.source
+    tags = get_tags(unescaped_page)
+    page = CGI::escapeHTML(unescaped_page)
 
   rescue => e
     logger.info(e.message)
@@ -64,6 +63,7 @@ post '/' do
     haml(:index, :locals => {:url => url, :tags => tags, :source => page})
   else
     logger.info("redirected to #{html_doc.redirect_url} when #{url} was requested.")
+    # Display information to user that redirection occured
     haml(:index, :locals => {:url => html_doc.redirect_url, :tags => tags, :source => page, :redirect_url => html_doc.redirect_url})
   end
 end
@@ -78,6 +78,7 @@ not_found do
   haml :'404'
 end
 
+# Get url from params and validate it
 def get_url(params)
   url = params.fetch('url')
   if (url =~ URI::regexp).nil?

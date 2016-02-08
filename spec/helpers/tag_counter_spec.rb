@@ -8,15 +8,16 @@ RSpec.describe Taggart::Helpers::TagCounter do
       <<-eos
         <html><head><title>Hello there</title></head>
           <body class="test">
-          this is a test of the automatic html body
-          <table>
-            <tr><td></td></tr>
-            <tr><td></td></tr>
-            <TR><td></td></TR>
-            <tr class="test"><td></td></tr>
-          </table>
-          <hr/>
-
+            this is a test of the automatic html body
+            <table>
+              <tr><td></td></tr>
+              <tr><td></td></tr>
+              <TR><td></td></TR>
+              <tr class="test"><td></td></tr>
+            </table>
+            <paragraph>test</paragraph>
+            <p>Another test</p>
+            <hr/>
           </body>
         </html>
       eos
@@ -36,6 +37,10 @@ RSpec.describe Taggart::Helpers::TagCounter do
 
     it "should get count for empty tag" do
       expect (subject.get_tag_count(html_document, 'hr')).should eq(1)
+    end
+
+    it "should get count for short tag" do
+      expect (subject.get_tag_count(html_document, 'p')).should eq(1)
     end
   end
 end
