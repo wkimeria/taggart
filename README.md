@@ -1,7 +1,10 @@
-# Taggart, based on Sinatra Starter
-## Program to show html source of document at url specified and provide tag counts and highlighting of tags
+# Taggart
 
-### uses a few common components:
+## Count and display HTML Tags in an html document
+
+### Show tag counts and highlighting of valid HTML tags (http://www.w3schools.com/tags/)
+
+### uses a few common components and is based on sinatra-starter:
 
 - [Haml](http://haml.info/) (markup)
 - [Sass](http://sass-lang.com/) (styling)
