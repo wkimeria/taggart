@@ -1,8 +1,10 @@
+# A class to count valid html tags in a html document provided
 module Taggart
   module Helpers
     class TagCounter
 
-
+      # Initialize the class with a valid list of html tags
+      #
       def initialize()
         #http://www.w3schools.com/tags/
         @valid_tags = ["!--",
@@ -132,9 +134,16 @@ module Taggart
 
       end
 
+
       # For each valid html tag, get its count in the given document.
       # If a tag does not exist in the document it is not included
       #in the count
+      #
+      # * *Args*
+      # * +document+ - html source to search for tags
+      #
+      # * *Returns* :
+      #   - A hashmap where the key is the tag and the value is the count in the document
       def get_tag_counts(document)
         tag_counts = {}
         @valid_tags.each do |t|
@@ -147,12 +156,19 @@ module Taggart
       # Get the count of start html tags
       # This will match tags of the following form
       # <body>
-      #<body class="xx">
-      #<body/>
+      # <body class="xx">
+      # <body/>
       # it will not match closing tags, because a complete tag is defined as either an open
       # close tag or a
-      #<body></body>
-      #<body/>
+      # <body></body>
+      # <body/>
+      #
+      # * *Args*
+      # * +document+ - html source to search for tags
+      # * +tag+ - current html tag to search for
+      #
+      # * *Returns* :
+      #   - The number of times the given tag occurs in the document
       def get_tag_count(document, tag)
         count = 0
         pattern = "<#{tag}[>|\s|//]"
