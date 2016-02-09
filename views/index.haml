@@ -4,23 +4,21 @@
 %br
 %paragraph
   Welcome to Taggart. Given a web page url, Taggart will fetch the source code of the page provided and list all the valid HTML Tags in the source code, as well as their respective counts.
+%br
+%br
 %form{ :action => "", :method => "post"}
   %div{:id => "inputs"}
     %label{:for => "url"} url:
-    %input{:type => "text", :name => "url", :size => 75, :class => "text", :placeholder => "http://www...."}
-    %input{:type => "submit", :value => "Fetch", :class => "button"}
-%br
-- if (defined? error_message) && error_message
-  %div{:id => "error_message", :class=>"error"}
-    #{error_message}
+    %input{:type => "text", :name => "url", :size => 75, :class => "text", :placeholder => "http://www....", :style => "width: 75%;"}
+    %input{:type => "submit", :value => "Fetch", :class => "button",:style => "width: 15%;"}
 
-- if (defined? messages) && messages
-  %div{:id => "messages"}
-- if (defined? redirect_url) && redirect_url
-  %div{:id => "redirect", :class => "info"}
-    A redirect occurred. You were redirected to #{redirect_url}
+- if (defined? error_message) && error_message
+  %div{:id => "error_message", :class=>"alert alert-danger", :style => "width: 100%;"}
+    #{error_message}
 - if (defined? tags) && tags
-  %div{:id => "urlInfo", :class => "info"}
+  %div{:id => "urlInfo", :class => "alert alert-success", :style => "width: 100%;"}
+    - if (defined? redirect_url) && redirect_url
+      A redirection occurred.
     Viewing source for
     %a{ :href => "#{url}"} #{url}
   %br
