@@ -11,17 +11,19 @@ $(document).ready(
 
 function highlightItem(n){
 
-    regexp_start = new RegExp( "(<" + n + "([^>]+)>)", 'ig');
-    regexp_end = new RegExp("</" + n + ">", 'ig');
-    regexp_empty = new RegExp("<" + n + "/>", 'ig');
-
-    $('#sourceCode').innerHTML = "#{source}";
+    regex_str = "(<" + n + "([^>]+)>)" + "|"  + "</" + n + ">" + "|" + "<" + n + "/>" + "|" + "<" + n + ">";
+    regexp = new RegExp(regex_str, 'ig');
+    console.log(regex_str);
 
 
-    $('#sourceCode').highlightRegex();
-    $('#sourceCode').highlightRegex(regexp_start);
-    $('#sourceCode').highlightRegex(regexp_end);
-    $('#sourceCode').highlightRegex(regexp_empty);
+    //This is a hack. The highlightRegex() method does not work correctly, and in some cases
+    //ends up deleting elements from the HTML. So rather than using it, ust reload the whole
+    //document from hidden div upon click
+    $('#sourceCode').html($('#sourceCodeShadow').html());
+
+    //$('#sourceCode').highlightRegex();
+    $('#sourceCode').highlightRegex(regexp);
+
 
 
 }
