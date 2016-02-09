@@ -171,13 +171,15 @@ module Taggart
       #   - A hashmap where the key is the tag and the value is the count in the document
       def get_tag_count(document, tag)
         count = 0
-        start_tag_with_attrs_pattern = "(<" + tag + "([^>]+)>)"
+        start_tag_with_attrs_pattern = "(<" + tag + " ([^>]+)>)"
         start_tag_pattern = "<" + tag + ">";
+        empty_tag_pattern = "<" + tag + "/>";
         start_tags_attr = document.scan(/#{start_tag_with_attrs_pattern}/i)
         start_tags = document.scan(/#{start_tag_pattern}/i)
-
+        empty_tags = document.scan(/#{empty_tag_pattern}/i)
         count = start_tags_attr.size if start_tags_attr != nil?
         count = count + start_tags.size if start_tags != nil?
+        count = count + empty_tags.size if empty_tags != nil?
         count
       end
     end
