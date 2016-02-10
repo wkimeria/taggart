@@ -2,11 +2,15 @@ Bundler.require :web
 Bundler.require :development if development?
 require 'open-uri'
 require_relative 'taggart/helpers/strict_tag_counter'
+require_relative 'taggart/helpers/pattern_tag_counter'
 require_relative 'taggart/helpers/html_page'
 require 'cgi'
 require 'uri'
 require 'logger'
 require 'net/http'
+require "sinatra/config_file"
+
+config_file 'config/config.yml'
 
 configure :production do
   set :haml, {:ugly => true}
@@ -30,11 +34,9 @@ end
 
 set :public_folder, 'public'
 
-
 # Show page where user can input the url to fetch page from
 get '/' do
   haml :index
-
 end
 
 #validate the url, fetch the page and return page and count of tags
@@ -68,7 +70,6 @@ post '/' do
   end
 end
 
-
 get '/style.css' do
   scss :style
 end
@@ -89,5 +90,11 @@ end
 
 # Get Tag Counts in html page
 def get_tags(page)
-  Taggart::Helpers::StrictTagCounter.new().get_tag_counts(page)
+  #determine whether to only get valid html tags or get tags that match a certain regex pattern
+  strict_tags = settings.strict_tags
+  if strict_tags
+    Taggart::Helpers::StrictTagCounter.new().get_tag_counts(page)
+  else
+    Taggart::Helpers::PatternTagCounter.new().get_tag_counts(page)
+  end
 end

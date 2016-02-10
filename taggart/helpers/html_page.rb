@@ -21,7 +21,6 @@ module Taggart
         fetch(url)
       end
 
-
       # Fetch the page at the url given
       #
       # * *Args*
@@ -54,6 +53,7 @@ module Taggart
             @status = 400
         end
       end
+
       private :fetch
     end
   end
