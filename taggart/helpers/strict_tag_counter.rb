@@ -1,7 +1,7 @@
 # A class to count valid html tags in a html document provided
 module Taggart
   module Helpers
-    class TagCounter
+    class StrictTagCounter
 
       # Initialize the class with a valid list of html tags
       #

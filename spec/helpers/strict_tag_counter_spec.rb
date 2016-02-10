@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe Taggart::Helpers::TagCounter do
+RSpec.describe Taggart::Helpers::StrictTagCounter do
 
   describe "#get_tag_count" do
 

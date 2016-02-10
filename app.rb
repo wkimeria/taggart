@@ -1,7 +1,7 @@
 Bundler.require :web
 Bundler.require :development if development?
 require 'open-uri'
-require_relative 'taggart/helpers/tag_counter'
+require_relative 'taggart/helpers/strict_tag_counter'
 require_relative 'taggart/helpers/html_page'
 require 'cgi'
 require 'uri'
@@ -89,5 +89,5 @@ end
 
 # Get Tag Counts in html page
 def get_tags(page)
-  Taggart::Helpers::TagCounter.new().get_tag_counts(page)
+  Taggart::Helpers::StrictTagCounter.new().get_tag_counts(page)
 end
