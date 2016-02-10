@@ -32,7 +32,7 @@ module Taggart
       #   - A list of unique html tags
       def get_unique_tags(document)
         unique_tags = []
-        tag_data = document.scan(/<(\w+)[^>]*>/i)
+        tag_data = document.scan(/<([!|\w]+)[^>]*>/i)
         tag_data.each do |i|
           unique_tags << i[0] unless unique_tags.include?(i)
         end
