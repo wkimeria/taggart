@@ -11,7 +11,7 @@ $(document).ready(
 
 function highlightItem(n){
 
-    regex_str = "(<" + n + "([^>]+)>)" + "|"  + "</" + n + ">" + "|" + "<" + n + "/>" + "|" + "<" + n + ">";
+    regex_str = "(<" + n + " ([^>]+)>)" + "|"  + "</" + n + ">" + "|" + "<" + n + "/>" + "|" + "<" + n + ">";
     regexp = new RegExp(regex_str, 'ig');
     console.log(regex_str);
 

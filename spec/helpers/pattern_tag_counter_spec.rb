@@ -12,12 +12,14 @@ RSpec.describe Taggart::Helpers::PatternTagCounter do
           <random>I am not a html tag but should match on pattern</random>
           <random class = 'test'>I am not a html tag but should match on pattern</random>
           <random/>
+          <a.length;c++){sdffsfsfsdfsdfsfdfdsfdssaaaaaaagetDocumentMode_(),null!=c&&c>
         </html>
       eos
     }
 
     it "should get counts for valid and invalid html tags" do
       tag_counts = subject.get_tag_counts(html_document)
+      puts tag_counts
       expect (tag_counts['html']).should eq(1)
       expect (tag_counts['head']).should eq(1)
       expect (tag_counts['title']).should eq(1)
