@@ -10,7 +10,7 @@ group :web do
   gem 'sinatra'
   gem 'sass'
   gem 'nokogiri'
-  #gem 'open-uri'
+  gem 'sinatra-contrib'
 end
 
 group :development do

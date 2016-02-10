@@ -1,0 +1,2 @@
+# Determine whether to enforce requirment that html tags must be strict (on WC3 list of tags
+strict_tags: false
